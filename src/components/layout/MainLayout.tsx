@@ -11,7 +11,7 @@ export default function MainLayout() {
   const { isRTL } = useLanguage();
 
   return (
-    <SidebarProvider collapsedWidth={60}>
+    <SidebarProvider>
       <div className={`flex min-h-screen w-full bg-background ${isRTL ? "rtl" : ""}`}>
         <Sidebar collapsed={sidebarCollapsed} onCollapsedChange={setSidebarCollapsed} />
         <div className="flex flex-col flex-1 w-full">

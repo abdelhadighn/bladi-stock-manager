@@ -67,7 +67,7 @@ export default function Sidebar({ collapsed, onCollapsedChange }: SidebarProps) 
         "border-r transition-all duration-300 bg-sidebar",
         collapsed ? "w-16" : "w-64"
       )}
-      collapsible
+      collapsible="icon"
       collapsed={collapsed}
       onCollapsedChange={onCollapsedChange}
     >

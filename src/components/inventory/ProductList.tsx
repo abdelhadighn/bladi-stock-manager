@@ -24,7 +24,7 @@ export default function ProductList() {
       return <Badge variant="destructive">{t("inventory", "outOfStock")}</Badge>;
     }
     if (stock < minStock) {
-      return <Badge variant="warning" className="bg-amber-500">{t("inventory", "lowStock")}</Badge>;
+      return <Badge variant="secondary" className="bg-amber-500">{t("inventory", "lowStock")}</Badge>;
     }
     return <Badge variant="outline" className="bg-green-100 text-green-800 border-green-200">{t("inventory", "inStock")}</Badge>;
   };

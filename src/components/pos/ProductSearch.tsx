@@ -2,7 +2,7 @@
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/context/LanguageContext";
-import { Search, BarcodeScan } from "lucide-react";
+import { Search, Barcode } from "lucide-react";
 import { useState } from "react";
 import { Product } from "@/lib/types";
 import { sampleProducts } from "@/lib/sample-data";
@@ -65,7 +65,7 @@ export default function ProductSearch({ onProductSelected }: ProductSearchProps)
           className="ml-2 bg-algerian-blue-600 hover:bg-algerian-blue-700 btn-hover"
           onClick={handleBarcodeClick}
         >
-          <BarcodeScan className="h-4 w-4 mr-2" />
+          <Barcode className="h-4 w-4 mr-2" />
           {t("pos", "scanBarcode")}
         </Button>
       </div>
