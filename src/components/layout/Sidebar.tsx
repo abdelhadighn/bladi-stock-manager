@@ -68,8 +68,6 @@ export default function Sidebar({ collapsed, onCollapsedChange }: SidebarProps) 
         collapsed ? "w-16" : "w-64"
       )}
       collapsible="icon"
-      collapsed={collapsed}
-      onCollapsedChange={onCollapsedChange}
     >
       <div className="p-4 flex items-center justify-center h-16">
         <h2 className={cn(
@@ -78,7 +76,7 @@ export default function Sidebar({ collapsed, onCollapsedChange }: SidebarProps) 
         )}>
           StockPro
         </h2>
-        <SidebarTrigger className={collapsed ? "mx-auto" : "ml-auto"} />
+        <SidebarTrigger className={collapsed ? "mx-auto" : "ml-auto"} onClick={() => onCollapsedChange(!collapsed)} />
       </div>
       
       <SidebarContent className={isRTL ? "rtl" : ""}>
