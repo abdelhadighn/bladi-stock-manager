@@ -6,6 +6,7 @@ import { SidebarTrigger } from "@/components/ui/sidebar";
 import { useLanguage } from "@/context/LanguageContext";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { cn } from "@/lib/utils";
 
 export default function Navbar() {
   const { t, language, setLanguage, isRTL } = useLanguage();
@@ -14,7 +15,7 @@ export default function Navbar() {
     <header className="sticky top-0 z-30 flex items-center justify-between h-16 px-4 border-b bg-card">
       <div className="flex items-center flex-1">
         <SidebarTrigger className="mx-2" />
-        <div className={`flex items-center ${isRTL ? 'mr-4' : 'ml-4'} max-w-md w-full`}>
+        <div className={cn("flex items-center max-w-md w-full", isRTL ? "mr-4" : "ml-4")}>
           <Search className="w-4 h-4 mr-2 text-muted-foreground" />
           <Input 
             placeholder={t("common", "search")}  
@@ -24,7 +25,7 @@ export default function Navbar() {
         </div>
       </div>
       
-      <div className="flex items-center space-x-4">
+      <div className={cn("flex items-center", isRTL ? "space-x-reverse" : "", "space-x-4")}>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" size="icon" className="relative">
@@ -32,7 +33,7 @@ export default function Navbar() {
               <span className="absolute top-0 right-0 w-2 h-2 bg-destructive rounded-full"></span>
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="w-80">
+          <DropdownMenuContent align={isRTL ? "start" : "end"} className="w-80">
             <DropdownMenuLabel>{t("common", "notifications")}</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <div className="max-h-96 overflow-auto">
@@ -58,7 +59,7 @@ export default function Navbar() {
               <Settings className="h-5 w-5" />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
+          <DropdownMenuContent align={isRTL ? "start" : "end"}>
             <DropdownMenuLabel>{t("common", "language")}</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={() => setLanguage("fr")}>
@@ -78,15 +79,15 @@ export default function Navbar() {
               </Avatar>
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-56" align="end">
+          <DropdownMenuContent className="w-56" align={isRTL ? "start" : "end"}>
             <DropdownMenuLabel>Omar Medjou</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-              <User className="mr-2 h-4 w-4" />
+              <User className={cn("h-4 w-4", isRTL ? "ml-2" : "mr-2")} />
               <span>{t("common", "profile")}</span>
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <Settings className="mr-2 h-4 w-4" />
+              <Settings className={cn("h-4 w-4", isRTL ? "ml-2" : "mr-2")} />
               <span>{t("common", "settings")}</span>
             </DropdownMenuItem>
             <DropdownMenuSeparator />

@@ -20,7 +20,6 @@ import { NavLink } from "react-router-dom";
 import {
   Sidebar as SidebarComponent,
   SidebarContent,
-  SidebarTrigger,
   SidebarMenu,
   SidebarMenuItem,
   SidebarGroup,
@@ -32,7 +31,7 @@ import {
 
 export default function Sidebar() {
   const { t, isRTL } = useLanguage();
-  const { open: collapsed, setOpen: setCollapsed } = useSidebar();
+  const { open: collapsed } = useSidebar();
 
   // Updated links to match the PRD modules
   const links = [
@@ -109,10 +108,6 @@ export default function Sidebar() {
         )}>
           StockPro
         </h2>
-        <SidebarTrigger 
-          className={collapsed ? "mx-auto" : ""} 
-          onClick={() => setCollapsed(!collapsed)} 
-        />
       </div>
       
       <SidebarContent>
@@ -140,8 +135,8 @@ export default function Sidebar() {
                         !collapsed && (isRTL ? "ml-2" : "mr-2")
                       )} />
                       <span className={cn(
-                        "transition-opacity",
-                        collapsed ? "opacity-0 w-0 hidden" : "opacity-100"
+                        "transition-all whitespace-nowrap",
+                        collapsed ? "w-0 opacity-0 hidden" : "w-auto opacity-100 inline"
                       )}>
                         {link.title}
                       </span>

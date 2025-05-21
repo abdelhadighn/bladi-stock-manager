@@ -10,7 +10,7 @@ export default function MainLayout() {
   const { isRTL } = useLanguage();
 
   return (
-    <SidebarProvider defaultOpen={false}>
+    <SidebarProvider defaultOpen={true}>
       <div className={`flex min-h-screen w-full bg-background ${isRTL ? "rtl" : ""}`}>
         <Sidebar />
         <div className="flex flex-col flex-1 w-full">
