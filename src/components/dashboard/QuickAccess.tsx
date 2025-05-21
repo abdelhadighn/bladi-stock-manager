@@ -10,7 +10,7 @@ export default function QuickAccess() {
 
   const actions = [
     {
-      title: t("pos", "title"),
+      title: t("navigation", "pos"),
       icon: <ShoppingCart className="h-5 w-5" />,
       href: "/pos",
       color: "bg-algerian-blue-600 hover:bg-algerian-blue-700",
@@ -22,19 +22,19 @@ export default function QuickAccess() {
       color: "bg-algerian-green-600 hover:bg-algerian-green-700",
     },
     {
-      title: t("inventory", "title"),
+      title: t("navigation", "inventory"),
       icon: <Archive className="h-5 w-5" />,
       href: "/inventory",
       color: "bg-gray-600 hover:bg-gray-700",
     },
     {
-      title: t("sales", "title"),
+      title: t("navigation", "sales"),
       icon: <FileText className="h-5 w-5" />,
       href: "/sales",
       color: "bg-amber-600 hover:bg-amber-700",
     },
     {
-      title: t("reports", "title"),
+      title: t("navigation", "reports"),
       icon: <BarChart2 className="h-5 w-5" />,
       href: "/reports",
       color: "bg-purple-600 hover:bg-purple-700",
