@@ -27,15 +27,12 @@ import {
   SidebarGroupContent,
   SidebarGroupLabel,
   SidebarMenuButton,
+  useSidebar
 } from "@/components/ui/sidebar";
 
-interface SidebarProps {
-  collapsed: boolean;
-  onCollapsedChange: (collapsed: boolean) => void;
-}
-
-export default function Sidebar({ collapsed, onCollapsedChange }: SidebarProps) {
+export default function Sidebar() {
   const { t, isRTL } = useLanguage();
+  const { open: collapsed, setOpen: setCollapsed } = useSidebar();
 
   // Updated links to match the PRD modules
   const links = [
@@ -100,7 +97,8 @@ export default function Sidebar({ collapsed, onCollapsedChange }: SidebarProps) 
     <SidebarComponent
       className={cn(
         "border-r transition-all duration-300 bg-sidebar",
-        collapsed ? "w-16" : "w-64"
+        collapsed ? "w-16" : "w-64",
+        isRTL && "border-r-0 border-l"
       )}
       collapsible="icon"
     >
@@ -111,10 +109,13 @@ export default function Sidebar({ collapsed, onCollapsedChange }: SidebarProps) 
         )}>
           StockPro
         </h2>
-        <SidebarTrigger className={collapsed ? "mx-auto" : "ml-auto"} onClick={() => onCollapsedChange(!collapsed)} />
+        <SidebarTrigger 
+          className={collapsed ? "mx-auto" : isRTL ? "mr-auto" : "ml-auto"} 
+          onClick={() => setCollapsed(!collapsed)} 
+        />
       </div>
       
-      <SidebarContent className={isRTL ? "rtl" : ""}>
+      <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel className={collapsed ? "sr-only" : ""}>
             {t("common", "modules")}
@@ -129,10 +130,14 @@ export default function Sidebar({ collapsed, onCollapsedChange }: SidebarProps) 
                       to={link.href}
                       className={({ isActive }) => cn(
                         "flex items-center py-2 px-3 w-full rounded-md",
-                        isActive ? "bg-sidebar-accent text-primary font-medium" : "text-sidebar-foreground hover:bg-sidebar-accent/50"
+                        isActive ? "bg-sidebar-accent text-primary font-medium" : "text-sidebar-foreground hover:bg-sidebar-accent/50",
+                        isRTL && "flex-row-reverse text-right"
                       )}
                     >
-                      <link.icon className={cn("h-5 w-5 flex-shrink-0", isRTL ? "ml-2" : "mr-2")} />
+                      <link.icon className={cn(
+                        "h-5 w-5 flex-shrink-0", 
+                        isRTL ? collapsed ? "mx-auto" : "ml-2" : collapsed ? "mx-auto" : "mr-2"
+                      )} />
                       <span className={cn(
                         "transition-opacity",
                         collapsed ? "opacity-0 w-0" : "opacity-100"

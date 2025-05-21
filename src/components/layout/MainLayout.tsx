@@ -1,5 +1,5 @@
 
-import { useState, ReactNode } from "react";
+import { ReactNode } from "react";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { Outlet } from "react-router-dom";
 import Navbar from "./Navbar";
@@ -7,14 +7,13 @@ import Sidebar from "./Sidebar";
 import { useLanguage } from "@/context/LanguageContext";
 
 export default function MainLayout() {
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const { isRTL } = useLanguage();
 
   return (
-    <SidebarProvider>
+    <SidebarProvider defaultOpen={false}>
       <div className={`flex min-h-screen w-full bg-background ${isRTL ? "rtl" : ""}`}>
-        <Sidebar collapsed={sidebarCollapsed} onCollapsedChange={setSidebarCollapsed} />
-        <div className="flex flex-col flex-1 w-full">
+        <Sidebar />
+        <div className={`flex flex-col flex-1 w-full ${isRTL ? "mr-0" : "ml-0"}`}>
           <Navbar />
           <main className="flex-1 p-6">
             <Outlet />
