@@ -1,5 +1,19 @@
 
-import { Home, ShoppingCart, Archive, FileText, ShoppingBag, BarChart2, Settings } from "lucide-react";
+import { 
+  Home, 
+  ShoppingCart, 
+  Archive, 
+  FileText, 
+  ShoppingBag, 
+  BarChart2, 
+  Settings,
+  Package,
+  Users,
+  User,
+  Receipt,
+  CreditCard,
+  FileCheck
+} from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { cn } from "@/lib/utils";
 import { NavLink } from "react-router-dom";
@@ -23,6 +37,7 @@ interface SidebarProps {
 export default function Sidebar({ collapsed, onCollapsedChange }: SidebarProps) {
   const { t, isRTL } = useLanguage();
 
+  // Updated links to match the PRD modules
   const links = [
     {
       title: t("navigation", "dashboard"),
@@ -30,9 +45,9 @@ export default function Sidebar({ collapsed, onCollapsedChange }: SidebarProps) 
       href: "/",
     },
     {
-      title: t("navigation", "pos"),
-      icon: ShoppingCart,
-      href: "/pos",
+      title: t("navigation", "products"),
+      icon: Package,
+      href: "/products",
     },
     {
       title: t("navigation", "inventory"),
@@ -41,13 +56,33 @@ export default function Sidebar({ collapsed, onCollapsedChange }: SidebarProps) 
     },
     {
       title: t("navigation", "sales"),
-      icon: FileText,
+      icon: ShoppingCart,
       href: "/sales",
+    },
+    {
+      title: t("navigation", "clients"),
+      icon: Users,
+      href: "/clients",
+    },
+    {
+      title: t("navigation", "suppliers"),
+      icon: User,
+      href: "/suppliers",
     },
     {
       title: t("navigation", "purchases"),
       icon: ShoppingBag,
       href: "/purchases",
+    },
+    {
+      title: t("navigation", "orders"),
+      icon: FileCheck,
+      href: "/orders",
+    },
+    {
+      title: t("navigation", "cashier"),
+      icon: CreditCard,
+      href: "/cashier",
     },
     {
       title: t("navigation", "reports"),
@@ -82,7 +117,7 @@ export default function Sidebar({ collapsed, onCollapsedChange }: SidebarProps) 
       <SidebarContent className={isRTL ? "rtl" : ""}>
         <SidebarGroup>
           <SidebarGroupLabel className={collapsed ? "sr-only" : ""}>
-            {t("common", "dashboard")}
+            {t("common", "modules")}
           </SidebarGroupLabel>
           
           <SidebarGroupContent>

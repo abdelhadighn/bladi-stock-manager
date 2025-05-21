@@ -11,18 +11,27 @@ import { LanguageProvider } from "@/context/LanguageContext";
 import MainLayout from "@/components/layout/MainLayout";
 import Login from "@/pages/Login";
 import Dashboard from "@/pages/Dashboard";
-import POS from "@/pages/POS";
 import Inventory from "@/pages/Inventory";
 import Settings from "@/pages/Settings";
 import NotFound from "@/pages/NotFound";
+import Sales from "@/pages/Sales";
+import Products from "@/pages/Products";
+import Clients from "@/pages/Clients";
+import Suppliers from "@/pages/Suppliers";
+import Purchases from "@/pages/Purchases";
+import Orders from "@/pages/Orders";
+import Cashier from "@/pages/Cashier";
+import Reports from "@/pages/Reports";
 
 const queryClient = new QueryClient();
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [userRole, setUserRole] = useState<"admin" | "manager" | "seller">("seller");
 
-  const handleLogin = () => {
+  const handleLogin = (role: "admin" | "manager" | "seller") => {
     setIsAuthenticated(true);
+    setUserRole(role);
   };
 
   return (
@@ -38,8 +47,15 @@ const App = () => {
               <Routes>
                 <Route element={<MainLayout />}>
                   <Route path="/" element={<Dashboard />} />
-                  <Route path="/pos" element={<POS />} />
+                  <Route path="/products" element={<Products />} />
                   <Route path="/inventory" element={<Inventory />} />
+                  <Route path="/sales" element={<Sales />} />
+                  <Route path="/clients" element={<Clients />} />
+                  <Route path="/suppliers" element={<Suppliers />} />
+                  <Route path="/purchases" element={<Purchases />} />
+                  <Route path="/orders" element={<Orders />} />
+                  <Route path="/cashier" element={<Cashier />} />
+                  <Route path="/reports" element={<Reports />} />
                   <Route path="/settings" element={<Settings />} />
                   <Route path="*" element={<NotFound />} />
                 </Route>
