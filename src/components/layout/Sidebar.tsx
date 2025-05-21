@@ -96,13 +96,13 @@ export default function Sidebar() {
   return (
     <SidebarComponent
       className={cn(
-        "border-r transition-all duration-300 bg-sidebar",
+        "transition-all duration-300 bg-sidebar",
         collapsed ? "w-16" : "w-64",
-        isRTL && "border-r-0 border-l"
+        isRTL ? "border-l" : "border-r"
       )}
       collapsible="icon"
     >
-      <div className="p-4 flex items-center justify-center h-16">
+      <div className="p-4 flex items-center justify-between h-16">
         <h2 className={cn(
           "text-lg font-bold transition-opacity",
           collapsed ? "opacity-0 w-0" : "opacity-100"
@@ -110,7 +110,7 @@ export default function Sidebar() {
           StockPro
         </h2>
         <SidebarTrigger 
-          className={collapsed ? "mx-auto" : isRTL ? "mr-auto" : "ml-auto"} 
+          className={collapsed ? "mx-auto" : ""} 
           onClick={() => setCollapsed(!collapsed)} 
         />
       </div>
@@ -131,16 +131,17 @@ export default function Sidebar() {
                       className={({ isActive }) => cn(
                         "flex items-center py-2 px-3 w-full rounded-md",
                         isActive ? "bg-sidebar-accent text-primary font-medium" : "text-sidebar-foreground hover:bg-sidebar-accent/50",
-                        isRTL && "flex-row-reverse text-right"
+                        isRTL && !collapsed && "flex-row-reverse text-right",
+                        collapsed && "justify-center"
                       )}
                     >
                       <link.icon className={cn(
                         "h-5 w-5 flex-shrink-0", 
-                        isRTL ? collapsed ? "mx-auto" : "ml-2" : collapsed ? "mx-auto" : "mr-2"
+                        !collapsed && (isRTL ? "ml-2" : "mr-2")
                       )} />
                       <span className={cn(
                         "transition-opacity",
-                        collapsed ? "opacity-0 w-0" : "opacity-100"
+                        collapsed ? "opacity-0 w-0 hidden" : "opacity-100"
                       )}>
                         {link.title}
                       </span>

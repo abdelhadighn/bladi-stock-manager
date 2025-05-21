@@ -13,7 +13,7 @@ export default function MainLayout() {
     <SidebarProvider defaultOpen={false}>
       <div className={`flex min-h-screen w-full bg-background ${isRTL ? "rtl" : ""}`}>
         <Sidebar />
-        <div className={`flex flex-col flex-1 w-full ${isRTL ? "mr-0" : "ml-0"}`}>
+        <div className="flex flex-col flex-1 w-full">
           <Navbar />
           <main className="flex-1 p-6">
             <Outlet />
