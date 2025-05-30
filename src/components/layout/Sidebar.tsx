@@ -17,6 +17,7 @@ import {
 import { useLanguage } from "@/context/LanguageContext";
 import { cn } from "@/lib/utils";
 import { NavLink } from "react-router-dom";
+import { useIsMobile } from "@/hooks/use-mobile";
 import {
   Sidebar as SidebarComponent,
   SidebarContent,
@@ -31,7 +32,8 @@ import {
 
 export default function Sidebar() {
   const { t, isRTL } = useLanguage();
-  const { open: collapsed } = useSidebar();
+  const { open: collapsed, setOpenMobile } = useSidebar();
+  const isMobile = useIsMobile();
 
   // Updated links to match the PRD modules
   const links = [
@@ -92,6 +94,12 @@ export default function Sidebar() {
     },
   ];
 
+  const handleLinkClick = () => {
+    if (isMobile) {
+      setOpenMobile(false);
+    }
+  };
+
   return (
     <SidebarComponent
       className={cn(
@@ -123,8 +131,10 @@ export default function Sidebar() {
                   <SidebarMenuButton asChild>
                     <NavLink
                       to={link.href}
+                      onClick={handleLinkClick}
                       className={({ isActive }) => cn(
-                        "flex items-center py-2 px-3 w-full rounded-md",
+                        "flex items-center py-3 px-3 w-full rounded-md touch-target",
+                        "min-h-[44px]", // iOS touch target minimum
                         isActive ? "bg-sidebar-accent text-primary font-medium" : "text-sidebar-foreground hover:bg-sidebar-accent/50",
                         isRTL && !collapsed && "flex-row-reverse text-right",
                         collapsed && "justify-center"
@@ -132,7 +142,7 @@ export default function Sidebar() {
                     >
                       <link.icon className={cn(
                         "h-5 w-5 flex-shrink-0", 
-                        !collapsed && (isRTL ? "ml-2" : "mr-2")
+                        !collapsed && (isRTL ? "ml-3" : "mr-3")
                       )} />
                       <span className={cn(
                         "transition-all whitespace-nowrap",

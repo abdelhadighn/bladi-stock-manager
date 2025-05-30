@@ -10,13 +10,13 @@ export default function Dashboard() {
   const { t } = useLanguage();
 
   return (
-    <div className="space-y-6 animate-fade-in">
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight">{t("dashboard", "title")}</h1>
-        <p className="text-muted-foreground">{t("common", "welcome")}, Omar!</p>
+    <div className="space-y-4 md:space-y-6 animate-fade-in safe-area-inset-top safe-area-inset-bottom">
+      <div className="space-y-1">
+        <h1 className="text-2xl md:text-3xl font-bold tracking-tight">{t("dashboard", "title")}</h1>
+        <p className="text-sm md:text-base text-muted-foreground">{t("common", "welcome")}, Omar!</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
         <StatCard
           title={t("dashboard", "todaySales")}
           value="12,450 DA"
@@ -42,11 +42,11 @@ export default function Dashboard() {
         />
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
+        <div className="lg:col-span-2 order-2 lg:order-1">
           <RecentActivity />
         </div>
-        <div>
+        <div className="order-1 lg:order-2">
           <StockAlerts />
         </div>
       </div>
